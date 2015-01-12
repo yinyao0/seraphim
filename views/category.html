@@ -1,0 +1,54 @@
+
+{{template "header"}} 
+    <style type="text/css">     
+     body {
+       background-image: url(/static/img/p7.jpg);
+       background-attachment: fixed;
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+     }
+    </style>
+  </head>
+
+
+
+  <body>
+    {{template "navbar" .}}
+
+    <div class="container">
+      <h1>The list of categories</h1>
+      <form class="form-inline" method="GET" action="/category">
+         <div class="form-group">
+           <input type="text" class="form-control" name="name">
+           <input type="hidden" name="op" value="add">
+         </div>
+         <button type="submit" class="btn btn-default">add</button> 
+      </form>   
+      <table class="table table-striped">
+         <thead>
+            <tr>
+               <th>#</th>
+               <th>types</th>
+               <th>topics</th>
+               <th>action</th>
+            </tr>
+         </thead>
+         <tbody>
+              {{range .Categories}}
+              <tr>
+                  <th>{{.Id}}</th>
+                  <th>{{.Title}}</th>
+                  <th>{{.TopicCount}}</th>
+                  <th><a href="/category?op=del&id={{.Id}}">delete</a></th>
+              </tr>
+              {{end}}
+         </tbody> 
+      </table>
+    </div>
+
+
+     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

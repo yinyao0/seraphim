@@ -1,0 +1,39 @@
+
+{{template "header"}}
+    <style type="text/css">     
+     body {
+       background-image: url(/static/img/p2.jpg);
+       background-attachment: fixed;
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+     }
+    </style>
+</head>
+
+
+<body>
+ <br /><br /><br /><br /><br /> 
+ <div class="container" style="width: 500px;">
+     <form class="form-horizontal" method="POST" action="/register">
+        <div class="form-group">
+         <label class="col-lg-4 control-label">username：</label>
+           <div class="col-lg-6">
+              <input id="uname" class="form-control" name="uname" placeholder="Account">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-lg-4 control-label">password：</label>
+                            <div class="col-lg-6">
+                              <input id="pwd" type="password" class="form-control" name="pwd" placeholder="Password">
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <a href="/register"><button type="submit" class="btn btn-default" >register</button></a>
+  
+               <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+                <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+
+</body>
+</html>
