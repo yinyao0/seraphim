@@ -3,7 +3,7 @@
 {{template "header"}} 
     <style type="text/css">     
      body {
-       background-image: url(/static/img/p7.jpg);
+       background-image: url(/static/img/p9.jpg);
        background-attachment: fixed;
        background-repeat: no-repeat;
        background-size: 100% 100%;
@@ -22,13 +22,29 @@
       <table class="table table-striped">
         <thead>
            <tr>
-              <td>#</td>
-              <td>Title</td>
-              <td>Update Time</td>
-              <td>Views</td>
-              <td>Replies</td>
+              <th>#</th>
+              <th>Title</th>
+              <th>Update Time</th>
+              <th>Views</th>
+              <th>Replies</th>
+              <th>action</th>
            </tr> 
         </thead>
+        <tbody>
+           {{range .Topics}}
+           <tr>
+               <th>{{.Id}}</th>
+               <th><a href="/topic/view/{{.Id}}">{{.Title}}</a></th>
+               <th>{{.Updated}}</th>
+               <th>{{.Views}}</th> 
+               <th>{{.RepliyCount}}</th>
+               <th>
+                  <a href="/topic/modify?tid={{.Id}}">modify</a>
+                  <a href="/topic/delete?tid={{.Id}}">delete</a>
+               </th> 
+           </tr>
+           {{end}}
+        </tbody>
       </table>
     </div>
 

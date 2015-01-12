@@ -5,7 +5,7 @@
           <ul class="nav navbar-nav">
              <li {{if .IsHome}}class="active"{{end}}><a href="/">Home</a></li>
              <li {{if .IsCategory}}class="active"{{end}}><a href="/category">Category</a></li>
-             <li {{if .IsTopics}}class="active"{{end}}><a href="/topics">Topics</a></li>
+             <li {{if .IsTopics}}class="active"{{end}}><a href="/topic">Topics</a></li>
           </ul>
 
      <div class="pull-right">

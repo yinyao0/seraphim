@@ -21,6 +21,10 @@ type Topic struct {
      ReplyCount        int64
 }
 
+func init() {
+   tables = append(tables,new(Topic))
+}
+
 func AddTopic(title, category,content,attachment string) error {
      topic := &Topic{
            Title:         title,
