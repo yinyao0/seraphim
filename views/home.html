@@ -16,13 +16,23 @@
 
     <div class="container">
       <div class="col-md-9">
-        col-md-9
+        {{range .Topics}}
+        <div class="page-header">
+          <h1><a href="topic/view/{{.Id}}">{{.Title}}</a>
+          <h6 class="text-muted">The paper pulished at {{.Created}}, it had been viewed {{.Views}} times, it had been replyed {{.ReplyCount}} times.</h6>
+          <p>
+             {{.Content}}
+          </p>
+        </div>
+        {{end}}
       </div>
 
       <div class="col-md-3">
          <h3>Category</h3>
          <ul class="nav nav-tabs nav-stacked">
-            <li><a href="#">Link</a></li> 
+            {{range .Categories}}
+            <li><a href="/?cate={{.Title}}">{{.Title}}</a></li> 
+            {{end}}
          </ul>
       </div>
 

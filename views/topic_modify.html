@@ -1,0 +1,45 @@
+
+{{template "header"}} 
+    <style type="text/css">     
+     body {
+       background-image: url(/static/img/p10.jpg);
+       background-attachment: fixed;
+       background-repeat: no-repeat;
+       background-size: 100% 100%;
+     }
+    </style>
+  </head>
+
+
+
+  <body>
+    {{template "navbar" .}}
+
+    <div class="container">
+      <h1>Add Topics</h1>
+      <form method="post" action="/topic">
+        <input type="hidden" name="tid" value={{.Tid}}>
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" class="form-control" name="title" value={{.Topic.Title}}>
+        </div>
+
+       <div class="form-group">
+          <label>Category:</label>
+          <input type="text" class="form-control" name="category" value={{.Topic.Category}}>
+       </div>
+
+      <div class="form-group">
+        <label>Content:</label>
+        <textarea class="form-control" name="content" cols="30" rows="10">{{.Topic.Content}}</textarea>
+      </div>
+             
+      <button type="submit" class="btn btn-default">Modify</button>
+      </form>
+    </div>
+
+     <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
+     <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>
+
+  </body>
+</html>

@@ -10,6 +10,31 @@ type CategoryController struct {
 }
 
 func (this *CategoryController) Get() {
+   this.Data["IsCategory"] = true
+   this.TplNames = "category.html"
+
+   var err error
+   this.Data["Categories"], err = models.GetAllCategories()
+   if err != nil {
+      beego.Error(err)
+   }
+
+   v := this.GetSession("s1")
+
+   if v == nil {
+      this.Data["IsLogin"] = false
+      this.Data["uname"] = " "
+      return
+   }
+   if v.(string) != "admin" {
+      this.Data["IsLogin"] = true
+      this.Data["uname"] = v.(string)
+      return
+   }
+
+   this.Data["IsLogin"] = true
+   this.Data["uname"] = v.(string)
+
    op := this.GetString("op")
    switch op {
      case "add":
@@ -37,18 +62,5 @@ func (this *CategoryController) Get() {
        this.Redirect("/category",302)
        return
    }
-   this.Data["IsCategory"] = true
-   this.TplNames = "category.html"
-   v := this.GetSession("s1")
-   if v == nil {
-      this.Data["IsLogin"] = false
-   } else {
-      this.Data["IsLogin"] = true
-   }
 
-   var err error
-   this.Data["Categories"], err = models.GetAllCategories()
-   if err != nil {
-      beego.Error(err)
-   }
 }

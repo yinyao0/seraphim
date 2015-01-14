@@ -10,7 +10,10 @@
 
      <div class="pull-right">
       <ul class="nav navbar-nav">
+       {{if .IsLogin}}
+       {{else}}
        <li><a href="/register">register</a></li>
+       {{end}}
        {{if .IsLogin}}
        <li><a href="/login?exit=true">{{.uname}}  quit</a></li>
        {{else}}
