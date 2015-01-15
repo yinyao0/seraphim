@@ -16,7 +16,7 @@
 
     <div class="container">
       <h1>Add Topics</h1>
-      <form method="post" action="/topic">
+      <form method="post" action="/topic" enctype="multipart/form-data">
         <div class="form-group">
           <label>Title:</label>
           <input type="text" class="form-control" name="title">
@@ -32,6 +32,10 @@
         <textarea class="form-control" name="content" cols="30" rows="10"></textarea>
       </div>
              
+      <div class="form-group">
+         <label>Attachment:</label>
+         <input type="file" class="form-control" name="attachment">
+      </div>
       <button type="submit" class="btn btn-default">Add</button>
       </form>
     </div>

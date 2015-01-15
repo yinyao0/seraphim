@@ -1,6 +1,7 @@
 package models
 
 import (
+     "os"
      "time"
      "strconv"
      "github.com/astaxie/beego"
@@ -123,6 +124,9 @@ func ModifyTopic(tid,title,category,content,attachment string) error {
        }
     }
 
+   if len(oldattach) >0 {
+      os.Remove("static/attachment/"+oldattach)
+   }
    cate := &Category{Title: category}
    has, err = x.Get(cate)
    beego.Debug(oldattach)

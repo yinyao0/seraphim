@@ -17,7 +17,7 @@
 
     <div class="container">
       <h1>Add Topics</h1>
-      <form method="post" action="/topic">
+      <form method="post" action="/topic" enctype="multipart/form-data">
         <input type="hidden" name="tid" value={{.Tid}}>
         <div class="form-group">
           <label>Title:</label>
@@ -34,6 +34,11 @@
         <textarea class="form-control" name="content" cols="30" rows="10">{{.Topic.Content}}</textarea>
       </div>
              
+      <div class="form-group">
+         <label>Attachment( <a href="static/attachment/{{.Topic.Attachment}}">{{.Topic.Attachment}}</a>) : </label>
+         <input type="file" class="form-control" name="attachment">
+      </div>
+
       <button type="submit" class="btn btn-default">Modify</button>
       </form>
     </div>

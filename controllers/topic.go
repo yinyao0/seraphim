@@ -38,16 +38,31 @@ func (this *TopicController) Post() {
      author := this.GetSession("s1").(string)
 
      var err error
+     _,fh, err := this.GetFile("attachment")
+     if err != nil {
+        beego.Error(err)
+     }
+
+     var attachment string
+     if fh != nil {
+        attachment = fh.Filename
+        beego.Info(attachment)
+        err = this.SaveToFile("attachment","static/attachment/"+attachment)
+        if err != nil {
+           beego.Error(err)
+        }
+     }
+
      if len(tid) == 0 {
-       err = models.AddTopic(title,category,content,author,"")
+       err = models.AddTopic(title,category,content,author,attachment)
      } else {
        writer, err := models.GetAuthorById(tid)
        if err != nil {
           beego.Error(err)
        }
 
-       if writer == author {
-           err = models.ModifyTopic(tid,title,category,content,"")
+       if writer == author || author == "admin"{
+           err = models.ModifyTopic(tid,title,category,content,attachment)
        }
      }
 
@@ -141,6 +156,7 @@ func (this *TopicController) View() {
       return
    }
    this.Data["Topic"] = topic
+   beego.Warn(topic.Attachment)
 
    replies, err := models.GetAllReplies(tid)
    if err != nil {
