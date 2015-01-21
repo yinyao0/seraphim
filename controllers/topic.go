@@ -156,7 +156,6 @@ func (this *TopicController) View() {
       return
    }
    this.Data["Topic"] = topic
-   beego.Warn(topic.Attachment)
 
    replies, err := models.GetAllReplies(tid)
    if err != nil {
