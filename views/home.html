@@ -1,10 +1,14 @@
 {{template "header"}} 
     <style type="text/css">     
      body {
+       width: auto;
+       height: auto;
        background-image: url(/static/img/p6.jpg);
-       background-attachment: fixed;
-       background-repeat: no-repeat;
+       background-color: #000;
+       /*-webkit-background-size: 100%;
+       -moz-background-size: 100%;*/
        background-size: 100% 100%;
+       /*-o-background-size: cover;*/
      }
     </style>
   </head>
@@ -15,7 +19,8 @@
     {{template "navbar" .}}
 
     <div class="container">
-      <div class="col-md-9">
+     <div class="row">
+      <div class="col-xs-12 col-md-8">
         {{range .Topics}}
         <div class="page-header">
           <h1><a href="topic/view/{{.Id}}">{{.Title}}</a>
@@ -31,12 +36,12 @@
             {{range .Pages}}
             <li {{if .Active}} class="active"{{end}}><a href="/?page={{.Num}}">{{.Num}}</a></li>
             {{end}}
-            <li><a href="/?page={{.Next}}"><span aria-hidden="true">&laquo;</span><span class="sr-only">Next</span></a></li>
+            <li><a href="/?page={{.Next}}"><span aria-hidden="true">&raquo;</span><span class="sr-only">Next</span></a></li>
           </ul>
         </nav>
       </div>
 
-      <div class="col-md-3">
+      <div class="col-xs-6 col-md-4">
          <h3>Category</h3>
          <ul class="nav nav-tabs nav-stacked">
             {{range .Categories}}
@@ -45,6 +50,7 @@
          </ul>
       </div>
 
+     </div>
     </div>
      <script type="text/javascript" src="http://cdn.staticfile.org/jquery/2.0.3/jquery.min.js"></script>
      <script type="text/javascript" src="/static/js/bootstrap.min.js"></script>

@@ -94,12 +94,23 @@ func (this *TopicController) Modify() {
     if v == nil {
       this.Data["IsLogin"] = false
       this.Data["uname"] = " "
+      this.Redirect("/topic",302)
+      return
     } else {
       this.Data["IsLogin"] = true
       this.Data["uname"] = v.(string)
     }
-
    tid := this.GetString("tid")
+
+   writer, err := models.GetAuthorById(tid)
+   if err != nil {
+      this.Redirect("/topic",302)
+      return
+   }
+   if writer != v.(string) && v.(string) != "admin" {
+      this.Redirect("/topic",302)
+      return
+   }
    topic, err := models.GetTopic(tid)
    if err != nil {
       beego.Error(err)

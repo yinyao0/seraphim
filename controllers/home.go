@@ -51,7 +51,7 @@ func (this *HomeController) Get() {
         //this.Data["Pages"] = pages
         t_topics := make([]*models.Topic,0)
         pre := int64(1)
-        next := int64(2)
+        next := int64(1)
         j := int64(1)
         if page == "" {
            if len(topics) > 5 {
@@ -64,14 +64,16 @@ func (this *HomeController) Get() {
            j = i
            p := (i - 1) * 5
            switch i {
+              case int64(n):
+                    t_topics = topics[p:]
+                    if pre != 1 {
+                       pre = i-1
+                    }
+                    next = i
               case 1:
                     t_topics = topics[:5]
                     pre = i
                     next = i+1
-              case int64(n):
-                    t_topics = topics[p:]
-                    pre = i-1
-                    next = i
               default:
                     t_topics = topics[p:p+5]
                     pre = i-1
