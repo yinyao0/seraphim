@@ -37,9 +37,11 @@ func (this *HomeController) Get() {
         }
         //topic.Content = strings.SplitAfterN(topic.Content," ",10)[0]
         for i:=0;i<len(topics);i++ {
-          //beego.Warn(len(topics[i].Content))
-          if len(topics[i].Content) > 100 {
-          topics[i].Content=strings.Join(strings.Split(topics[i].Content," ")[0:10]," ")
+          //beego.Warn(topics[i].Content)
+          if len(topics[i].Content) > 5 {
+          //k := strings.Split(topics[i].Content,"")[0:10]
+          //beego.Warn(k)
+          topics[i].Content=strings.Join(strings.Split(topics[i].Content,"")[0:10],"")
           }
         }
         n := len(topics)/5+1
